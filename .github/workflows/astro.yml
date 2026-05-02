@@ -11,23 +11,23 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '16.x'
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install  # Si vous utilisez npm
-        # run: yarn  # Si vous utilisez Yarn
+        run: npm ci
 
       - name: Build site
-        run: npm run build  # Remplacez npm run build par la commande pour construire votre site
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages  # La branche sur laquelle vous souhaitez déployer votre site
-          FOLDER: ./dist    # Le dossier contenant votre site construit
+          BRANCH: gh-pages
+          FOLDER: ./dist

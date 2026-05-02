@@ -1,8 +1,22 @@
 ---
-import Hero from '../components/Hero.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+const destination = 'https://portfolio.deboston.space/';
 ---
 
-<BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
-</BaseLayout>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Redirection en cours...</title>
+		<meta http-equiv="refresh" content={`0; url=${destination}`} />
+		<link rel="canonical" href={destination} />
+	</head>
+	<body>
+		<script>
+			window.location.replace('https://portfolio.deboston.space/');
+		</script>
+		<p>
+			Cette page a été déplacée. Si la redirection ne fonctionne pas,
+			<a href={destination}>cliquez ici</a>.
+		</p>
+	</body>
+</html>
