@@ -1,4 +1,4 @@
-name: Deploy Astro site to GitHub Pages
+name: Deploy redirect to GitHub Pages
 
 on:
   push:
@@ -15,16 +15,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install --legacy-peer-deps
-
-      - name: Build site
-        run: npm run build
+      - name: Generate redirect page
+        run: |
+          mkdir -p dist
+          cat > dist/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="fr">
+            <head>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>Redirection en cours...</title>
+              <meta http-equiv="refresh" content="0; url=https://portfolio.deboston.space/" />
+              <link rel="canonical" href="https://portfolio.deboston.space/" />
+            </head>
+            <body>
+              <script>window.location.replace('https://portfolio.deboston.space/');</script>
+              <p>Ce portfolio a déménagé. Si la redirection ne fonctionne pas, <a href="https://portfolio.deboston.space/">cliquez ici</a>.</p>
+            </body>
+          </html>
+          EOF
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.7
