@@ -1,0 +1,22 @@
+---
+const destination = 'https://portfolio.deboston.space/';
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Redirection en cours...</title>
+		<meta http-equiv="refresh" content={`0; url=${destination}`} />
+		<link rel="canonical" href={destination} />
+	</head>
+	<body>
+		<script>
+			window.location.replace('https://portfolio.deboston.space/');
+		</script>
+		<p>
+			Ce portfolio a déménagé. Si la redirection ne fonctionne pas,
+			<a href={destination}>cliquez ici</a>.
+		</p>
+	</body>
+</html>
